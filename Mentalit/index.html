@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alura aula 3</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="incone/alura.ico">
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+          Mentalista
+        </h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-mentalista.svg" class="page-logo" alt=""><br>
+        <p class="page-subtitle">
+          Digite um número de 0 a 10
+        </p>
+        <input type="number" id="valor" /><br>
+        <button type="submit" onclick="Chutar()">Chutar</button>
+        <h2 class="resultado" id="resultado"></h2>
+        <script>
+            var numeroSecreto = parseInt(Math.random()*11);
+            function Chutar(){
+                var resultado = document.getElementById("resultado")
+                var chute = parseInt(document.getElementById("valor").value);
+                console.log(chute)
+                if (chute == numeroSecreto){
+                    console.log("Acertou parabéns")
+                    resultado.innerHTML = "Você acertou"
+                }else if (chute > 10 || chute < 0) {
+                    console.log("Você deve digita um número de 0 a 10")
+                    resultado.innerHTML = "Você deve digita um número de 0 a 10"
+                }
+                else {
+                    console.log("Errou, tentar na próxima")
+                    resultado.innerHTML = "Errou, o número secreto era " + numeroSecreto
+                }
+            }
+        </script>
+      </div>
+      <a href="https://alura.com.br/" target="_blank">
+        <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
+      </a>
+      <script src="app.js"></script>
+</body>
+</html>
