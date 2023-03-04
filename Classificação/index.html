@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alura</title>
+    <link rel="shortcut icon" href="incone/alura.ico">
+    <style>
+        
+        * {
+  text-align: center;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  min-height: 600px;
+  background-image: url("https://s2.glbimg.com/vHazLQmkwwMdRJGInURQ5KL46W0=/0x0:1600x900/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2020/C/E/Nt2liHQAeuIymPAkIbxg/cartola-fundo4.png");
+  background-color: #111;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+}
+
+.page-title {
+  color: #ffffff;
+  margin: 0 0 5px;
+}
+
+.page-subtitle {
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+.page-logo {
+  width: 200px;
+}
+
+.alura-logo {
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+table {
+  border: 2px solid #F25C05;
+  border-collapse: collapse;
+}
+
+h1 {
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+}
+
+th,
+tr,
+td {
+  border: solid 3px #F25C05;
+  font-size: 20px;
+  color: white;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Tabela de classificação</h1>
+
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Vitórias</th>
+          <th>Empates</th>
+          <th>Derrotas</th>
+          <th>Pontos</th>
+          <th colspan="3">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaJogadores">
+        <!-- <tr>
+          <th>Nome</th>
+          <th>Vitórias</th>
+          <th>Empates</th>
+          <th>Derrotas</th>
+          <th>Pontos</th>
+          <th colspan="3">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaJogadores">
+        <tr>
+          <td>Paulo</td>
+          <td>2</td>
+          <td>4</td>
+          <td>2</td>
+          <td>22</td>
+          <td><button onClick="adicionarVitoria()">Vitória</button></td>
+          <td><button onClick="adicionarEmpate()">Empate</button></td>
+          <td><button onClick="adicionarDerrota()">Derrota</button></td>
+        </tr>
+    <tr>
+        <td>Rafa</td>
+        <td>4</td>
+        <td>1</td>
+        <td>5</td>
+        <td>23</td>
+        <td><button onClick="adicionarVitoria()">Vitória</button></td>
+        <td><button onClick="adicionarEmpate()">Empate</button></td>
+        <td><button onClick="adicionarDerrota()">Derrota</button></td>
+    </tr>
+        <tr>
+            <td>Gui</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>27</td>
+            <td><button onClick="adicionarVitoria()">Vitória</button></td>
+            <td><button onClick="adicionarEmpate()">Empate</button></td>
+            <td><button onClick="adicionarDerrota()">Derrota</button></td>
+          </tr>  -->
+      </tbody>
+    </table>
+    <script>
+        var rafa = {nome: "Corinthians", vitorias:4, empates:3, derrotas: 3, pontos: 0}
+        var paulo = {nome: "Palmeiras", vitorias:2, empates:4, derrotas: 4, pontos: 0}
+        var gui = {nome: "Santos", vitorias:4, empates:4, derrotas: 2, pontos: 0}
+        var saopaulo = {nome: "São Paulo", vitorias:1, empates:4, derrotas: 2, pontos: 0}
+
+        function cacularPontos (jogador){
+            var pontos = (jogador.vitorias * 3) + jogador.empates
+            return pontos;
+        }
+        
+        gui.pontos = cacularPontos(gui)
+        paulo.pontos = cacularPontos(paulo)
+        rafa.pontos = cacularPontos(rafa)
+        saopaulo.pontos = cacularPontos(saopaulo)
+        
+        var jogadores = [rafa, paulo, gui, saopaulo]
+
+        function exibeJogadoresNaTela(jogadores) {
+            var elemento = ""
+            for (var i = 0; i < jogadores.length; i++) {
+            elemento += "<tr><td>" + jogadores[i].nome + "</td>";
+            elemento += "<td>" + jogadores[i].vitorias + "</td>";
+            elemento += "<td>" + jogadores[i].empates + "</td>";
+            elemento += "<td>" + jogadores[i].derrotas + "</td>";
+            elemento += "<td>" + jogadores[i].pontos + "</td>";
+            elemento += "<td><button onClick='adicionarVitoria(" + i + ")'>Vitória</button></td>";
+            elemento += "<td><button onClick='adicionarEmpate(" + i + ")'>Empate</button></td>";
+            elemento += "<td><button onClick='adicionarDerrota(" + i + ")'>Derrota</button></td>";
+            elemento += "</tr>";
+           
+          }
+          var tabelaJogadores = document.getElementById("tabelaJogadores");
+          tabelaJogadores.innerHTML = elemento;
+        }
+        
+        exibeJogadoresNaTela(jogadores);
+
+        function adicionarVitoria(i) {
+          var jogador = jogadores[i];
+          jogador.vitorias++; 
+          jogador.pontos = calculaPontos(jogador); 
+          exibeJogadoresNaTela(jogadores); 
+        }
+        function adicionarEmpate(i) {
+          var jogador = jogadores[i];
+          jogador.empates++;
+          jogador.pontos = calculaPontos(jogador); 
+          exibeJogadoresNaTela(jogadores);
+        }
+
+        function adicionarDerrota(i) {
+          var jogador = jogadores[i];
+          jogador.derrotas++;
+          exibeJogadoresNaTela(jogadores);
+        }
+
+        //adicionar jogador
+        function adicionarJogador(i) {
+          var nomeJogador = document.getElementById("nomeJogador").value;
+          var novoJogador = {
+            nome: nomeJogador,
+            vitorias: 0,
+            empates: 0,
+            derrotas: 0,
+            pontos: 0
+          };
+          jogadores.push(novoJogador);
+          exibeJogadoresNaTela(jogadores);
+        }
+
+        function zerarTabela() {
+          for (var i = 0; i < jogadores.length; i++) {
+            jogadores[i].vitorias = 0;
+            jogadores[i].empates = 0;
+            jogadores[i].derrotas = 0;
+            jogadores[i].pontos = 0;
+          }
+          exibeJogadoresNaTela(jogadores);
+        }
+         //  chave . valor
+        // console.log(rafa.Pontos)
+    </script> 
+</body>
+</html>
